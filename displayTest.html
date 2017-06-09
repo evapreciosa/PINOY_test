@@ -131,7 +131,7 @@
                 login : function (){
                     // ASN REQ 3 : merely singIn with fb here
                     var provider = new firebase.auth.FacebookAuthProvider();
-                    firebase.auth().signInWithPopup(provider).catch(errorCallback)
+                    firebase.auth().signInWithPopup(provider).then(function(){}.catch(errorCallback)
                     // 換成登入圖
                 },
                 logout : function (){
