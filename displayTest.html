@@ -19,6 +19,7 @@
             <br>{{i.comment}}<br><br><br>
         </div>
         <button @click="login">Log in with FB!</button>
+        <button @click="logout">Log out!</button>
         <!--<h2>{{companyName}}</h2>
         <input type="text" v-model="companyName">
 
@@ -123,7 +124,7 @@
             el:'#sharing',
             data:data,
             methods:{
-                submit: function(msg){
+                submit : function(msg){
                     this.wage = 99999;
                     alert(msg);
                 },
@@ -131,17 +132,16 @@
                     // ASN REQ 3 : merely singIn with fb here
                     var provider = new firebase.auth.FacebookAuthProvider();
                     firebase.auth().signInWithPopup(provider).catch(errorCallback)
+                    // 換成登入圖
                 },
                 logout : function (){
                     // ASN REQ 3  : signOut here
                     firebase.auth().signOut()
+                    console.log("successfully log out")
+                    // 換成未登入圖
                 }
             }                        
         });            
     </script>
 </body>
-</html>        
-        
-        
-        
-        
+</html>
