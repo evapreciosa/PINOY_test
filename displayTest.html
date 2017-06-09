@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>PINOY_display</title>
+</head>
+<body>
+    <div id="sharing">
+        <div v-for="i in exp">
+            {{i.company}}
+            <br>Job Position : {{i.job}}
+            <br>Job Category : {{i.category}}
+            <br>During : {{i.duration}}
+            <br>Wage : {{i.salary}}
+            <br>Rent : {{i.rental}}
+            <br>Day Off : {{i.dayOff}}
+            <br>Comment : 
+            <br>{{i.comment}}<br><br><br>
+        </div>
+        <button @click="login">Log in with FB!</button>
+        <!--<h2>{{companyName}}</h2>
+        <input type="text" v-model="companyName">
+
+        <br><span>Job Position : {{jobPosition}}</span>
+        <input type="text" v-model="jobPosition">
+
+        <br><span>Job Category : {{jobCategory}}</span>
+        <input type="text" v-model="jobCategory">
+
+        <br><span>During : {{during}}</span>
+        <p v-if="during <= 2017">info too old</p>
+        <p v-else>{{during}}</p>
+        <input type="text" v-model="during">
+
+        <br><span>Wage : {{wage}}</span>
+        <input type="text" v-model="wage">
+
+        <br><span>Rent : {{rent}}</span>
+        <input type="text" v-model="rent">
+
+        <br><span>Day Off : {{dateOff}}</span>
+        <input type="text" v-model="dateOff">
+
+        <br><span>Comment :</span> 
+        <br><span>{{comment}}</span>
+        <br><textarea v-model="comment" cols="50" rows="5"></textarea> -->
+
+        <br><input type="submit" value="Submit!" @click="submit('Ready to share your work experience?')">
+
+        <br><div>{{ $data | json }}</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDMmPExrLZCOq1BdT86ky1TIdv1fLhPrEo",
+        authDomain: "pinoyworkexpsharing.firebaseapp.com",
+        databaseURL: "https://pinoyworkexpsharing.firebaseio.com",
+        projectId: "pinoyworkexpsharing",
+        storageBucket: "pinoyworkexpsharing.appspot.com",
+        messagingSenderId: "676999550287"
+    };
+    firebase.initializeApp(config);
+
+    var db          = firebase.database() ;
+    var rootRef     = db.ref() ;
+    var messagesRef = db.ref("messages") ;
+    var usersRef    = db.ref("users")   
+
+    var errorCallback = function(error){ alert(error.message)}
+
+    rootRef('/users/' + loginUser.uid).once('value').then(function(snapshot) {})
+    </script>    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>
+    <script>
+        var data = {
+            exp:[
+                {
+                    company:"NCCU",
+                    job:"student",
+                    category:"learning",
+                    duration:"2015",
+                    salary:"no money",
+                    rental:"none",
+                    dayOff:"2",
+                    comment:"Coding is fucking hard."
+                },
+                {
+                    company:"NCCU COC",
+                    job:"student Eva",
+                    category:"learning DCT",
+                    duration:"2015-2017",
+                    salary:"104405022",
+                    rental:"104405022",
+                    dayOff:"3",
+                    comment:"Coding is fucking hard. blahblahblah"
+                },
+                {
+                    company:"NCCU COC & DCT",
+                    job:"student Eva Chen",
+                    category:"learning COC & DCT",
+                    duration:"2015-2019",
+                    salary:"8000",
+                    rental:"5625",
+                    dayOff:"4",
+                    comment:"Coding is fucking hard. blahblahblah lalala hahaha"
+                },                                
+            ]
+            // companyName:"NCCU",
+            // jobPosition:"student",
+            // jobCategory:"learning",
+            // during:"2015",
+            // wage:"no money",
+            // rent:"none",
+            // dayOff:"2",
+            // comment:"Coding is fucking hard."
+        }       
+        var vm = new Vue({
+            el:'#sharing',
+            data:data,
+            methods:{
+                submit: function(msg){
+                    this.wage = 99999;
+                    alert(msg);
+                },
+                login : function (){
+                    // ASN REQ 3 : merely singIn with fb here
+                    var provider = new firebase.auth.FacebookAuthProvider();
+                    firebase.auth().signInWithPopup(provider).catch(errorCallback)
+                },
+                logout : function (){
+                    // ASN REQ 3  : signOut here
+                    firebase.auth().signOut()
+                }
+            }                        
+        });            
+    </script>
+</body>
+</html>        
+        
+        
+        
+        
