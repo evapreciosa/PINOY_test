@@ -115,28 +115,69 @@
                         this.wage = 99999;
                         alert(msg);
                     },
-                    createExp : function ( newExp ){
+                    createExp : function (){
                         var vm = this;
                         if(jobCategory == factory){
                             factoryRef.push({
-                                company : newExp.company,
-                                jobPos : newExp.jobPos,
-                                jobType : newExp.jobType,
-                                startTime : newExp.startTime,
-                                endTime : newExp.endTime,
+                                company : company,
+                                jobPos : jobPos,
+                                jobType : jobType,
+                                startTime : startTime,
+                                endTime : endTime,
                                 wage : wage,                      
-                                startTime : newExp.startTime,
-                                endTime : newExp.endTime,
-                                wage : newExp.wage,
-                                wagePer : newExp.wagePer,
-                                wageRate : newExp.wageRate,
-                                rent : newExp.rent,
-                                rentRate : newExp.rentRate,
-                                dayOff : newExp.dayOff,
-                                dayOffPer : newExp.dayOffPer,
-                                dayOffRate : newExp.dayOffRate,
-                                comment : newExp.comment,
+                                startTime : startTime,
+                                endTime : endTime,
+                                wage : wage,
+                                wagePer : wagePer,
+                                wageRate : wageRate,
+                                rent : rent,
+                                rentRate : rentRate,
+                                dayOff : dayOff,
+                                dayOffPer : dayOffPer,
+                                dayOffRate : dayOffRate,
+                                comment : comment,
                             }).catch(errorCallback)
+                        }else if(jobCategory === fisherman){
+                                fishermanRef.push({
+                                company : company,
+                                jobPos : jobPos,
+                                jobType : jobType,
+                                startTime : startTime,
+                                endTime : endTime,
+                                wage : wage,                      
+                                startTime : startTime,
+                                endTime : endTime,
+                                wage : wage,
+                                wagePer : wagePer,
+                                wageRate : wageRate,
+                                rent : rent,
+                                rentRate : rentRate,
+                                dayOff : dayOff,
+                                dayOffPer : dayOffPer,
+                                dayOffRate : dayOffRate,
+                                comment : comment,
+                            }).catch(errorCallback)
+                        }else{
+                                householdRef.push({
+                                company : company,
+                                jobPos : jobPos,
+                                jobType : jobType,
+                                startTime : startTime,
+                                endTime : endTime,
+                                wage : wage,                      
+                                startTime : startTime,
+                                endTime : endTime,
+                                wage : wage,
+                                wagePer : wagePer,
+                                wageRate : wageRate,
+                                rent : rent,
+                                rentRate : rentRate,
+                                dayOff : dayOff,
+                                dayOffPer : dayOffPer,
+                                dayOffRate : dayOffRate,
+                                comment : comment,
+                            }).catch(errorCallback)
+
                         }
 
 
