@@ -6,25 +6,25 @@
         <link rel="stylesheet" type="text/css" href="reg.css">
     </head>    
     <body>
-        <form action="https://console.firebase.google.com/u/0/project/pinoyworkexpsharing/database/data/" method="text">
+        <form id="sharing" action="https://console.firebase.google.com/u/0/project/pinoyworkexpsharing/database/data/" method="text">
             <h2>Share Your Work Experience</h2>
-            <input type="text" required id="name" name="entry.1339495092" placeholder="Company Name"></br>
-            <input type="text" required id="name" name="entry.1339495092" placeholder="Job Position">
-            <select>
-                <option value="disabled selected" >Job category</option>
-                <option>factory worker</option>
-                <option>fisherman</option>
-                <option>household worker</option>
+            <input v-model="company" type="text" required id="name" name="entry.1339495092" placeholder="Company Name"></br>
+            <input v-model="jobPos" type="text" required id="name" name="entry.1339495092" placeholder="Job Position">
+            <select v-model="jobType">
+                <option id="jobCategory" value="disabled selected" >Job category</option>
+                <option id="factoryWorker" click="chposeJobCategory">factory worker</option>
+                <option id="fisherman" @click="chposeJobCategory">fisherman</option>
+                <option id="householdWorker" @click="chposeJobCategory">household worker</option>
             </select></br>
-            <h5>During<input type="date" required id="birthday" name="date">~<input type="date" required id="birthday" name="date"></h5>
-            <input type="number" required id="name" name="entry.1339495092" placeholder="Wage : 0 NTD">
-            <select>
+            <h5>During<input v-model="startTime" type="date" required id="birthday" name="date">~<input v-model="endTime" type="date" required id="birthday" name="date"></h5>
+            <input v-model="wage" type="number" required id="name" name="entry.1339495092" placeholder="Wage : 0 NTD">
+            <select v-model="wagePer">
                 <option value="disabled selected" >please select</option>
                 <option>/day</option>
                 <option>/week</option>
                 <option>/month</option>
             </select>
-            <select>
+            <select v-model="wageRate">
                 <option value="disabled selected" >rate:?/5</option>
                 <option>1</option>
                 <option>2</option>
@@ -32,8 +32,8 @@
                 <option>4</option>
                 <option>5</option>
             </select></br>
-            <input type="number" required id="name" name="entry.1339495092" placeholder="Rent :">
-            <select>
+            <input v-model="rent" type="number" required id="name" name="entry.1339495092" placeholder="Rent :">
+            <select v-model="rentRate">
                 <option value="disabled selected" >rate:?/5</option>
                 <option>1</option>
                 <option>2</option>
@@ -41,13 +41,13 @@
                 <option>4</option>
                 <option>5</option>
             </select></br>
-            <h5>day-off<input type="number">day
-            <select>
+            <h5>day-off<input v-model="dayOff" type="number">day
+            <select v-model="dayOffPer">
                 <option value="disabled selected" >please select</option>
                 <option>/week</option>
                 <option>/month</option>
             </select>
-            <select>
+            <select v-model="dayOffRate">
                 <option value="disabled selected" >rate:?/5</option>
                 <option>1</option>
                 <option>2</option>
@@ -56,36 +56,100 @@
                 <option>5</option>
             </select>
             </h5></br>
-            <input type="text" required id="name" name="entry.1339495092" placeholder="Comment"></br>
-            <input type="submit" value="submit" id="submit">
+            <input v-model="comment" type="text" required id="name" name="entry.1339495092" placeholder="Comment"></br>
+            <input type="submit" value="submit" id="submit" @click="createExp">
         </form>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>   
         <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDMmPExrLZCOq1BdT86ky1TIdv1fLhPrEo",
-            authDomain: "pinoyworkexpsharing.firebaseapp.com",
-            databaseURL: "https://pinoyworkexpsharing.firebaseio.com",
-            projectId: "pinoyworkexpsharing",
-            storageBucket: "pinoyworkexpsharing.appspot.com",
-            messagingSenderId: "676999550287"
-        };
-        firebase.initializeApp(config);
+            var jobCategory = $("#jobCategory");
+            var factory = $("#factoryWorker");
+            var fishermany = $("#fisherman");
+            var household = $("#householdWorker");
 
-        var db          = firebase.database() ;
-        var rootRef     = db.ref() ;
-        var factoryRef  = rootRef.child("factory") ;
-        var fishermanRef   = rootRef.child("fisherman") ;
-        var householdRef   = rootRef.child("household") ;
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDMmPExrLZCOq1BdT86ky1TIdv1fLhPrEo",
+                authDomain: "pinoyworkexpsharing.firebaseapp.com",
+                databaseURL: "https://pinoyworkexpsharing.firebaseio.com",
+                projectId: "pinoyworkexpsharing",
+                storageBucket: "pinoyworkexpsharing.appspot.com",
+                messagingSenderId: "676999550287"
+            };
+            firebase.initializeApp(config);
 
-        var errorCallback = function(error){ alert(error.message)}
+            var db          = firebase.database() ;
+            var rootRef     = db.ref() ;
+            var factoryRef  = rootRef.child("factory") ;
+            var fishermanRef   = rootRef.child("fisherman") ;
+            var householdRef   = rootRef.child("household") ;
 
-        // rootRef('/users/' + loginUser.uid).once('value').then(function(snapshot) {})
+            var errorCallback = function(error){ alert(error.message)}
+
+            // Vue 
+            var vm = new Vue({
+                el : '#sharing',
+                data : {
+                    factory : {},
+                    fisherman : {},
+                    household : {}
+                },
+                methods : {
+                    login : function (){
+                        var provider = new firebase.auth.FacebookAuthProvider();
+                        firebase.auth().signInWithPopup(provider).then(function(){}).catch(errorCallback)
+                        // 換成登入圖
+                    },
+                    logout : function (){
+                        firebase.auth().signOut()
+                        console.log("successfully log out")
+                        // 換成未登入圖
+                    },                
+                    chposeJobCategory : function(){
+
+                    },
+                    submit : function(msg){
+                        this.wage = 99999;
+                        alert(msg);
+                    },
+                    createExp : function ( newExp ){
+                        var vm = this;
+                        if(jobCategory == factory){
+                            factoryRef.push({
+                                company : newExp.company,
+                                jobPos : newExp.jobPos,
+                                jobType : newExp.jobType,
+                                startTime : newExp.startTime,
+                                endTime : newExp.endTime,
+                                wage : wage,                      
+                                startTime : newExp.startTime,
+                                endTime : newExp.endTime,
+                                wage : newExp.wage,
+                                wagePer : newExp.wagePer,
+                                wageRate : newExp.wageRate,
+                                rent : newExp.rent,
+                                rentRate : newExp.rentRate,
+                                dayOff : newExp.dayOff,
+                                dayOffPer : newExp.dayOffPer,
+                                dayOffRate : newExp.dayOffRate,
+                                comment : newExp.comment,
+                            }).catch(errorCallback)
+                        }
+
+
+                    }                
+                }                        
+            });       
+
+
+            
+
+            // rootRef('/users/' + loginUser.uid).once('value').then(function(snapshot) {})
         </script>    
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>        
+     
     </body>
 </html>
