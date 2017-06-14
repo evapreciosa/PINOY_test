@@ -12,9 +12,9 @@
             <input v-model="jobPos" type="text" required id="name" name="entry.1339495092" placeholder="Job Position">
             <select v-model="jobType">
                 <option id="jobCategory" value="disabled selected" >Job category</option>
-                <option id="factoryWorker" click="chposeJobCategory">factory worker</option>
-                <option id="fisherman" @click="chposeJobCategory">fisherman</option>
-                <option id="householdWorker" @click="chposeJobCategory">household worker</option>
+                <option id="factoryWorker" @click="chooseFactory">factory worker</option>
+                <option id="fisherman" @click="chooseFisherman">fisherman</option>
+                <option id="householdWorker" @click="chooseHousehold">household worker</option>
             </select></br>
             <h5>During<input v-model="startTime" type="date" required id="birthday" name="date">~<input v-model="endTime" type="date" required id="birthday" name="date"></h5>
             <input v-model="wage" type="number" required id="name" name="entry.1339495092" placeholder="Wage : 0 NTD">
@@ -98,8 +98,8 @@
                     household : {}
                 },
                     editor : {
-                        activity : {},
-                        activity_id : "" ,
+                        exp : {},
+                        exp_id : "" ,
                         isCreating : false
                     },
                     methods : {
@@ -112,24 +112,46 @@
                             firebase.auth().signOut()
                             console.log("successfully log out")
                             // 換成未登入圖
-                        },                
-                        chposeJobCategory : function(){
-
                         },
+                        editorCreateExp : function(){
+                            this.editor.exp_id = null
+                            this.editor.exp = {
+                                    company : NCCU,
+                                    jobPos : student,
+                                    jobType : factory,
+                                    startTime : 2015/09/14,
+                                    endTime : 2017/06/16,
+                                    wage : 0,
+                                    wagePer : week,
+                                    wageRate : 3,
+                                    rent : 10000,
+                                    rentRate : 2,
+                                    dayOff : 2,
+                                    dayOffPer : week,
+                                    dayOffRate : 2,
+                                    comment : cowbay,
+                            }
+                        },                                        
+                        chooseFactory : function(){
+                            jobCategory = factory;                            
+                        },
+                        chooseFisherman : function(){
+                            jobCategory = fisherman;                            
+                        },
+                        chooseHousehold : function(){
+                            jobCategory = household;                            
+                        },                                                
                         submit : function(msg){
                             this.wage = 99999;
                             alert(msg);
                         },
                         createExp : function ( newExp ){
                             var vm = this;
-                            if(jobCategory == factory){
+                            if(jobCategory === factory){
                                 factoryRef.push({
                                     company : newExp.company,
                                     jobPos : newExp.jobPos,
                                     jobType : newExp.jobType,
-                                    startTime : newExp.startTime,
-                                    endTime : newExp.endTime,
-                                    wage : newExp.wage,                      
                                     startTime : newExp.startTime,
                                     endTime : newExp.endTime,
                                     wage : newExp.wage,
@@ -149,9 +171,6 @@
                                     jobType : newExp.jobType,
                                     startTime : newExp.startTime,
                                     endTime : newExp.endTime,
-                                    wage : newExp.wage,                      
-                                    startTime : newExp.startTime,
-                                    endTime : newExp.endTime,
                                     wage : newExp.wage,
                                     wagePer : newExp.wagePer,
                                     wageRate : newExp.wageRate,
@@ -166,10 +185,7 @@
                                     householdRef.push({
                                     company : newExp.company,
                                     jobPos : newExp.jobPos,
-                                    jobType : newExp.jobType,
-                                    startTime : newExp.startTime,
-                                    endTime : newExp.endTime,
-                                    wage : newExp.wage,                      
+                                    jobType : newExp.jobType,                     
                                     startTime : newExp.startTime,
                                     endTime : newExp.endTime,
                                     wage : newExp.wage,
