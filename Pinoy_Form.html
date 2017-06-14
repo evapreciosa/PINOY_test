@@ -1,20 +1,91 @@
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-    <script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyDMmPExrLZCOq1BdT86ky1TIdv1fLhPrEo",
-        authDomain: "pinoyworkexpsharing.firebaseapp.com",
-        databaseURL: "https://pinoyworkexpsharing.firebaseio.com",
-        projectId: "pinoyworkexpsharing",
-        storageBucket: "pinoyworkexpsharing.appspot.com",
-        messagingSenderId: "676999550287"
-    };
-    firebase.initializeApp(config);
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pinoy Share Platfrom</title>
+        <link rel="stylesheet" type="text/css" href="reg.css">
+    </head>    
+    <body>
+        <form action="https://console.firebase.google.com/u/0/project/pinoyworkexpsharing/database/data/" method="text">
+            <h2>Share Your Work Experience</h2>
+            <input type="text" required id="name" name="entry.1339495092" placeholder="Company Name"></br>
+            <input type="text" required id="name" name="entry.1339495092" placeholder="Job Position">
+            <select>
+                <option value="disabled selected" >Job category</option>
+                <option>factory worker</option>
+                <option>fisherman</option>
+                <option>household worker</option>
+            </select></br>
+            <h5>During<input type="date" required id="birthday" name="date">~<input type="date" required id="birthday" name="date"></h5>
+            <input type="number" required id="name" name="entry.1339495092" placeholder="Wage : 0 NTD">
+            <select>
+                <option value="disabled selected" >please select</option>
+                <option>/day</option>
+                <option>/week</option>
+                <option>/month</option>
+            </select>
+            <select>
+                <option value="disabled selected" >rate:?/5</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select></br>
+            <input type="number" required id="name" name="entry.1339495092" placeholder="Rent :">
+            <select>
+                <option value="disabled selected" >rate:?/5</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select></br>
+            <h5>day-off<input type="number">day
+            <select>
+                <option value="disabled selected" >please select</option>
+                <option>/week</option>
+                <option>/month</option>
+            </select>
+            <select>
+                <option value="disabled selected" >rate:?/5</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            </h5></br>
+            <input type="text" required id="name" name="entry.1339495092" placeholder="Comment"></br>
+            <input type="submit" value="submit" id="submit">
+        </form>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDMmPExrLZCOq1BdT86ky1TIdv1fLhPrEo",
+            authDomain: "pinoyworkexpsharing.firebaseapp.com",
+            databaseURL: "https://pinoyworkexpsharing.firebaseio.com",
+            projectId: "pinoyworkexpsharing",
+            storageBucket: "pinoyworkexpsharing.appspot.com",
+            messagingSenderId: "676999550287"
+        };
+        firebase.initializeApp(config);
 
-    var db          = firebase.database() ;
-    var rootRef     = db.ref() ;
-    var factoryRef  = rootRef.child("factory") ;
-    var fishermanRef   = rootRef.child("fisherman") ;
-    var householdRef   = rootRef.child("household") ;
+        var db          = firebase.database() ;
+        var rootRef     = db.ref() ;
+        var factoryRef  = rootRef.child("factory") ;
+        var fishermanRef   = rootRef.child("fisherman") ;
+        var householdRef   = rootRef.child("household") ;
+
+        var errorCallback = function(error){ alert(error.message)}
+
+        // rootRef('/users/' + loginUser.uid).once('value').then(function(snapshot) {})
+        </script>    
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>        
+    </body>
+</html>
