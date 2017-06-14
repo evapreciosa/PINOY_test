@@ -148,7 +148,7 @@
                         createExp : function ( newExp ){
                             var vm = this;
                             if(jobCategory === factory){
-                                factoryRef.push({
+                                factoryRef.set({
                                     company : newExp.company,
                                     jobPos : newExp.jobPos,
                                     jobType : newExp.jobType,
@@ -165,7 +165,7 @@
                                     comment : newExp.comment,
                                 }).catch(errorCallback)
                             }else if(jobCategory === fisherman){
-                                    fishermanRef.push({
+                                    fishermanRef.set({
                                     company : newExp.company,
                                     jobPos : newExp.jobPos,
                                     jobType : newExp.jobType,
@@ -182,7 +182,7 @@
                                     comment : newExp.comment,
                                 }).catch(errorCallback)
                             }else{
-                                    householdRef.push({
+                                    householdRef.set({
                                     company : newExp.company,
                                     jobPos : newExp.jobPos,
                                     jobType : newExp.jobType,                     
