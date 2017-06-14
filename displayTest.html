@@ -68,12 +68,13 @@
 
     var db          = firebase.database() ;
     var rootRef     = db.ref() ;
-    var messagesRef = db.ref("messages") ;
-    var usersRef    = db.ref("users")   
+    var factoryRef  = rootRef.child("factory") ;
+    var fishermanRef   = rootRef.child("fisherman") ;
+    var householdRef   = rootRef.child("household") ;
 
     var errorCallback = function(error){ alert(error.message)}
 
-    rootRef('/users/' + loginUser.uid).once('value').then(function(snapshot) {})
+    // rootRef('/users/' + loginUser.uid).once('value').then(function(snapshot) {})
     </script>    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>
