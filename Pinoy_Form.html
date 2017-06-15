@@ -180,7 +180,7 @@
                     // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
 
                     return firebase.database().ref().update(updates);
-                },
+                }.catch(errorCallback),
                 login : function (){
                     // ASN REQ 3 : merely singIn with fb here
                     var provider = new firebase.auth.FacebookAuthProvider();
