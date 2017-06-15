@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Pinoy Share Platfrom</title>
-        <!--<link rel=stylesheet media="screen" href="form.css">-->
+        <link rel=stylesheet media="screen" href="form.css">
 
         <style>
         @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
@@ -15,25 +15,25 @@
         <div id="topic"><img id="top" src="img/top.png" alt="pinoy"></div>
         <h2>Share Your Work Experience!</h2>
         <form id="postForm" method="text">
-            <input type="text" required  placeholder="Company Name"></br>
-            <input type="text" required  placeholder="Job Position">
+            <input name="company" type="text" required  placeholder="Company Name"></br>
+            <input name="jobPos" type="text" required  placeholder="Job Position">
 
-            <select required>
+            <select name="jobType" required>
                 <option value="">Job Category</option>
                 <option value="factoryworker">Factory Worker</option>
                 <option value="fisherman">Fisherman</option>
                 <option value="household">Household worker</option>
             </select></br>
             <span class="wordcss">During :</span>
-            <input type="date" class="during" required placeholder="Start working day">  <span class="wordcss">&nbsp; ~ &nbsp;</span> <input type="date" class="during" required placeholder="End day">
-            <span class="wordcss">Wage :</span><input class="wage" type="number" required placeholder=" 0"><span class="wordcss">&nbsp; NTD&nbsp; </span>
-            <select class="wage" required>
+            <input name="startTime" type="date" class="during" required placeholder="Start working day">  <span class="wordcss">&nbsp; ~ &nbsp;</span> <input name="endTime" type="date" class="during" required placeholder="End day">
+            <span class="wordcss">Wage :</span><input name="wage" class="wage" type="number" required placeholder=" 0"><span class="wordcss">&nbsp; NTD&nbsp; </span>
+            <select name="wagePer" class="wage" required>
                 <option value="">Please Select</option>
                 <option value="day">/Day</option>
                 <option value="week">/Week</option>
                 <option value="month">/Month</option>
             </select>
-            <select class="wage"required>
+            <select name="wageRate" class="wage"required>
                 <option value="">rate:_/5</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -42,14 +42,14 @@
                 <option value="5">5</option>
             </select></br>
 
-            <input type="number" required placeholder="Rent : 0 NTD">
-            <select required>
+            <input name="rent" type="number" required placeholder="Rent : 0 NTD">
+            <select name="rentPer" required>
                 <option value="">Please Select</option>
                 <option value="day">/Day</option>
                 <option value="week">/Week</option>
                 <option value="month">/Month</option>
             </select>
-            <select required>
+            <select name="rentRate" required>
                 <option value="" >rate:_/5</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -58,13 +58,13 @@
                 <option value="5">5</option>
             </select></br>
 
-            <input type="number" required placeholder="Day-off : 0 day">
-            <select required>
+            <input name="dayOff" type="number" required placeholder="Day-off : 0 day">
+            <select name="dayPer" required>
                 <option value="">please Select</option>
                 <option value="week">/week</option>
                 <option value="month">/month</option>
             </select>
-            <select required>
+            <select name="dayRate" required>
                 <option value="" >rate:_/5</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -74,7 +74,7 @@
             </select>
 
             </br>
-            <textarea cols="51" rows="5" id="comment" required placeholder="Comment"></textarea>
+            <textarea name="comment" cols="51" rows="5" id="comment" required placeholder="Comment"></textarea>
             <input id="submit" type="submit" value="Submit" @click="submit">
         </form>
 
@@ -93,55 +93,6 @@
             messagingSenderId: "676999550287"
         };
         firebase.initializeApp(config);
-
-        // function writeNewPost(company,jobPos, jobType, startTime, endTime, wage, wagePer, wageRate, rent, rentPer, rentRate, dayOff, dayOffPer, dayOffRate, comment) {
-        //     var dataArr = $("#postForm").serializeArray();
-
-        //     // Get a key for a new Post.
-        //     var newPostKey = firebase.database().ref().child('posts').push().key;
-
-        //     // A post entry.
-        //     var postData = {
-        //         company: dataArr[0].value,
-        //         jobPos: dataArr[1].value,
-        //         jobType: dataArr[2].value,
-        //         startTime: dataArr[3].value,
-        //         endTime: dataArr[4].value,
-        //         wage: dataArr[5].value,
-        //         wagePer: dataArr[6].value,
-        //         wageRate: dataArr[7].value,
-        //         rent: dataArr[8].value,
-        //         rentPer: dataArr[9].value,
-        //         rentRate: dataArr[10].value,
-        //         dayOff: dataArr[11].value,
-        //         dayOffPer: dataArr[12].value,
-        //         dayOffRate: dataArr[13].value,
-        //         comment: dataArr[14].value               
-
-        //         // company: company,
-        //         // jobPos: jobPos,
-        //         // jobType: jobType,
-        //         // startTime: startTime,
-        //         // endTime: endTime,
-        //         // wage: wage,
-        //         // wagePer: wagePer,
-        //         // wageRate: wageRate,
-        //         // rent: rent,
-        //         // rentPer: rentPer,
-        //         // rentRate: wageRate,
-        //         // dayOff: dayOff,
-        //         // dayOffPer: dayOffPer,
-        //         // dayOffRate: dayOffRate,
-        //         // comment: comment
-        //     };
-
-        //     // Write the new post's data simultaneously in the posts list and the user's post list.
-        //     var updates = {};
-        //     updates['/posts/' + newPostKey] = postData;
-        //     // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
-        //     return firebase.database().ref().update(updates);
-        // }
 
         var errorCallback = function(error){ alert(error.message)}
 
