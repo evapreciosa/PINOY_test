@@ -14,7 +14,7 @@
     <body>
         <div id="topic"><img id="top" src="img/top.png" alt="pinoy"></div>
         <h2>Share Your Work Experience!</h2>
-        <form id="postForm" @submit="submit" method="text">
+        <form id="postForm" method="text">
             <input type="text" required  placeholder="Company Name"></br>
             <input type="text" required  placeholder="Job Position">
 
@@ -75,7 +75,7 @@
 
             </br>
             <textarea cols="51" rows="5" id="comment" required placeholder="Comment"></textarea>
-            <input id="submit" type="submit" value="Submit">
+            <input id="submit" type="submit" value="Submit" @click="submit">
         </form>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
