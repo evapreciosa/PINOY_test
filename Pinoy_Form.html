@@ -3,213 +3,198 @@
     <head>
         <meta charset="utf-8">
         <title>Pinoy Share Platfrom</title>
-        <link rel="stylesheet" type="text/css" href="reg.css">
-    </head>    
+        <link rel=stylesheet media="screen" href="form.css">
+
+        <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+        {font-family: "Noto Sans TC", "Microsoft JhengHe";}
+        </style>
+
+    </head>
     <body>
-        <form id="sharing" action="https://console.firebase.google.com/u/0/project/pinoyworkexpsharing/database/data/" method="text">
-            <h2>Share Your Work Experience</h2>
-            <input v-model="company" type="text" required id="name" name="entry.1339495092" placeholder="Company Name"></br>
-            <input v-model="jobPos" type="text" required id="name" name="entry.1339495092" placeholder="Job Position">
-            <select v-model="jobType">
-                <option id="jobCategory" value="disabled selected" >Job category</option>
-                <option id="factoryWorker" @click="chooseFactory">factory worker</option>
-                <option id="fisherman" @click="chooseFisherman">fisherman</option>
-                <option id="householdWorker" @click="chooseHousehold">household worker</option>
+        <div id="topic"><img id="top" src="img/top.png" alt="pinoy"></div>
+        <h2>Share Your Work Experience!</h2>
+        <form id="postForm" action="https://docs.google.com/spreadsheets/d/1vhYG8TnedmMDjipJRsUykOxoxjojd7EF7QDoRR3gBP4/edit#gid=1556363660" method="text">
+            <input type="text" required  placeholder="Company Name"></br>
+            <input type="text" required  placeholder="Job Position">
+
+            <select required>
+                <option value="">Job Category</option>
+                <option value="factoryworker">Factory Worker</option>
+                <option value="fisherman">Fisherman</option>
+                <option value="household">Household worker</option>
             </select></br>
-            <h5>During<input v-model="startTime" type="date" required id="birthday" name="date">~<input v-model="endTime" type="date" required id="birthday" name="date"></h5>
-            <input v-model="wage" type="number" required id="name" name="entry.1339495092" placeholder="Wage : 0 NTD">
-            <select v-model="wagePer">
-                <option value="disabled selected" >please select</option>
-                <option>/day</option>
-                <option>/week</option>
-                <option>/month</option>
+            <span class="wordcss">During :</span>
+            <input type="date" class="during" required placeholder="Start working day">  <span class="wordcss">&nbsp; ~ &nbsp;</span> <input type="date" class="during" required placeholder="End day">
+            <span class="wordcss">Wage :</span><input class="wage" type="number" required placeholder=" 0"><span class="wordcss">&nbsp; NTD&nbsp; </span>
+            <select class="wage" required>
+                <option value="">Please Select</option>
+                <option value="day">/Day</option>
+                <option value="week">/Week</option>
+                <option value="month">/Month</option>
             </select>
-            <select v-model="wageRate">
-                <option value="disabled selected" >rate:?/5</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select class="wage"required>
+                <option value="">rate:_/5</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select></br>
-            <input v-model="rent" type="number" required id="name" name="entry.1339495092" placeholder="Rent :">
-            <select v-model="rentRate">
-                <option value="disabled selected" >rate:?/5</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+
+            <input type="number" required placeholder="Rent : 0 NTD">
+            <select required>
+                <option value="">Please Select</option>
+                <option value="day">/Day</option>
+                <option value="week">/Week</option>
+                <option value="month">/Month</option>
+            </select>
+            <select required>
+                <option value="" >rate:_/5</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select></br>
-            <h5>day-off<input v-model="dayOff" type="number">day
-            <select v-model="dayOffPer">
-                <option value="disabled selected" >please select</option>
-                <option>/week</option>
-                <option>/month</option>
+
+            <input type="number" required placeholder="Day-off : 0 day">
+            <select required>
+                <option value="">please Select</option>
+                <option value="week">/week</option>
+                <option value="month">/month</option>
             </select>
-            <select v-model="dayOffRate">
-                <option value="disabled selected" >rate:?/5</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select required>
+                <option value="" >rate:_/5</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
-            </h5></br>
-            <input v-model="comment" type="text" required id="name" name="entry.1339495092" placeholder="Comment"></br>
-            <input type="submit" value="submit" id="submit" @click="createExp">
+
+            </br>
+            <textarea cols="51" rows="5" id="comment" required placeholder="Comment"></textarea>
+            <input id="submit" type="submit" value="Submit" @click="submit">
         </form>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>   
         <script>
-            var jobCategory = $("#jobCategory");
-            var factory = $("#factoryWorker");
-            var fishermany = $("#fisherman");
-            var household = $("#householdWorker");
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDMmPExrLZCOq1BdT86ky1TIdv1fLhPrEo",
+            authDomain: "pinoyworkexpsharing.firebaseapp.com",
+            databaseURL: "https://pinoyworkexpsharing.firebaseio.com",
+            projectId: "pinoyworkexpsharing",
+            storageBucket: "pinoyworkexpsharing.appspot.com",
+            messagingSenderId: "676999550287"
+        };
+        firebase.initializeApp(config);
 
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyDMmPExrLZCOq1BdT86ky1TIdv1fLhPrEo",
-                authDomain: "pinoyworkexpsharing.firebaseapp.com",
-                databaseURL: "https://pinoyworkexpsharing.firebaseio.com",
-                projectId: "pinoyworkexpsharing",
-                storageBucket: "pinoyworkexpsharing.appspot.com",
-                messagingSenderId: "676999550287"
-            };
-            firebase.initializeApp(config);
+        // function writeNewPost(company,jobPos, jobType, startTime, endTime, wage, wagePer, wageRate, rent, rentPer, rentRate, dayOff, dayOffPer, dayOffRate, comment) {
+        //     var dataArr = $("#postForm").serializeArray();
 
-            var db          = firebase.database() ;
-            var rootRef     = db.ref() ;
-            var factoryRef  = rootRef.child("factory") ;
-            var fishermanRef   = rootRef.child("fisherman") ;
-            var householdRef   = rootRef.child("household") ;
+        //     // Get a key for a new Post.
+        //     var newPostKey = firebase.database().ref().child('posts').push().key;
 
-            var errorCallback = function(error){ alert(error.message)}
+        //     // A post entry.
+        //     var postData = {
+        //         company: dataArr[0].value,
+        //         jobPos: dataArr[1].value,
+        //         jobType: dataArr[2].value,
+        //         startTime: dataArr[3].value,
+        //         endTime: dataArr[4].value,
+        //         wage: dataArr[5].value,
+        //         wagePer: dataArr[6].value,
+        //         wageRate: dataArr[7].value,
+        //         rent: dataArr[8].value,
+        //         rentPer: dataArr[9].value,
+        //         rentRate: dataArr[10].value,
+        //         dayOff: dataArr[11].value,
+        //         dayOffPer: dataArr[12].value,
+        //         dayOffRate: dataArr[13].value,
+        //         comment: dataArr[14].value               
 
-            // Vue 
-            var vm = new Vue({
-                el : '#sharing',
-                data : {
-                    factory : {},
-                    fisherman : {},
-                    household : {}
+        //         // company: company,
+        //         // jobPos: jobPos,
+        //         // jobType: jobType,
+        //         // startTime: startTime,
+        //         // endTime: endTime,
+        //         // wage: wage,
+        //         // wagePer: wagePer,
+        //         // wageRate: wageRate,
+        //         // rent: rent,
+        //         // rentPer: rentPer,
+        //         // rentRate: wageRate,
+        //         // dayOff: dayOff,
+        //         // dayOffPer: dayOffPer,
+        //         // dayOffRate: dayOffRate,
+        //         // comment: comment
+        //     };
+
+        //     // Write the new post's data simultaneously in the posts list and the user's post list.
+        //     var updates = {};
+        //     updates['/posts/' + newPostKey] = postData;
+        //     // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+        //     return firebase.database().ref().update(updates);
+        // }
+
+        var errorCallback = function(error){ alert(error.message)}
+
+        var vm = new Vue({
+            el:'#postForm',
+            methods:{
+                submit : function() {
+                    var dataArr = $("#postForm").serializeArray();
+
+                    // Get a key for a new Post.
+                    var newPostKey = firebase.database().ref().child('posts').push().key;
+
+                    // A post entry.
+                    var postData = {
+                        company: dataArr[0].value,
+                        jobPos: dataArr[1].value,
+                        jobType: dataArr[2].value,
+                        startTime: dataArr[3].value,
+                        endTime: dataArr[4].value,
+                        wage: dataArr[5].value,
+                        wagePer: dataArr[6].value,
+                        wageRate: dataArr[7].value,
+                        rent: dataArr[8].value,
+                        rentPer: dataArr[9].value,
+                        rentRate: dataArr[10].value,
+                        dayOff: dataArr[11].value,
+                        dayOffPer: dataArr[12].value,
+                        dayOffRate: dataArr[13].value,
+                        comment: dataArr[14].value
+                    };
+
+                    // Write the new post's data simultaneously in the posts list and the user's post list.
+                    var updates = {};
+                    updates['/posts/' + newPostKey] = postData;
+                    // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+                    return firebase.database().ref().update(updates);
                 },
-                    editor : {
-                        exp : {},
-                        exp_id : "" ,
-                        isCreating : false
-                    },
-                    methods : {
-                        login : function (){
-                            var provider = new firebase.auth.FacebookAuthProvider();
-                            firebase.auth().signInWithPopup(provider).then(function(){}).catch(errorCallback)
-                            // 換成登入圖
-                        },
-                        logout : function (){
-                            firebase.auth().signOut()
-                            console.log("successfully log out")
-                            // 換成未登入圖
-                        },
-                        editorCreateExp : function(){
-                            this.editor.exp_id = null
-                            this.editor.exp = {
-                                    company : NCCU,
-                                    jobPos : student,
-                                    jobType : factory,
-                                    startTime : 2015/09/14,
-                                    endTime : 2017/06/16,
-                                    wage : 0,
-                                    wagePer : week,
-                                    wageRate : 3,
-                                    rent : 10000,
-                                    rentRate : 2,
-                                    dayOff : 2,
-                                    dayOffPer : week,
-                                    dayOffRate : 2,
-                                    comment : cowbay,
-                            }
-                        },                                        
-                        chooseFactory : function(){
-                            jobCategory = factory;                            
-                        },
-                        chooseFisherman : function(){
-                            jobCategory = fisherman;                            
-                        },
-                        chooseHousehold : function(){
-                            jobCategory = household;                            
-                        },                                                
-                        submit : function(msg){
-                            this.wage = 99999;
-                            alert(msg);
-                        },
-                        createExp : function ( newExp ){
-                            var vm = this;
-                            if(jobCategory === factory){
-                                factoryRef.set({
-                                    company : newExp.company,
-                                    jobPos : newExp.jobPos,
-                                    jobType : newExp.jobType,
-                                    startTime : newExp.startTime,
-                                    endTime : newExp.endTime,
-                                    wage : newExp.wage,
-                                    wagePer : newExp.wagePer,
-                                    wageRate : newExp.wageRate,
-                                    rent : newExp.rent,
-                                    rentRate : newExp.rentRate,
-                                    dayOff : newExp.dayOff,
-                                    dayOffPer : newExp.dayOffPer,
-                                    dayOffRate : newExp.dayOffRate,
-                                    comment : newExp.comment,
-                                }).catch(errorCallback)
-                            }else if(jobCategory === fisherman){
-                                    fishermanRef.set({
-                                    company : newExp.company,
-                                    jobPos : newExp.jobPos,
-                                    jobType : newExp.jobType,
-                                    startTime : newExp.startTime,
-                                    endTime : newExp.endTime,
-                                    wage : newExp.wage,
-                                    wagePer : newExp.wagePer,
-                                    wageRate : newExp.wageRate,
-                                    rent : newExp.rent,
-                                    rentRate : newExp.rentRate,
-                                    dayOff : newExp.dayOff,
-                                    dayOffPer : newExp.dayOffPer,
-                                    dayOffRate : newExp.dayOffRate,
-                                    comment : newExp.comment,
-                                }).catch(errorCallback)
-                            }else{
-                                    householdRef.set({
-                                    company : newExp.company,
-                                    jobPos : newExp.jobPos,
-                                    jobType : newExp.jobType,                     
-                                    startTime : newExp.startTime,
-                                    endTime : newExp.endTime,
-                                    wage : newExp.wage,
-                                    wagePer : newExp.wagePer,
-                                    wageRate : newExp.wageRate,
-                                    rent : newExp.rent,
-                                    rentRate : newExp.rentRate,
-                                    dayOff : newExp.dayOff,
-                                    dayOffPer : newExp.dayOffPer,
-                                    dayOffRate : newExp.dayOffRate,
-                                    comment : newExp.comment,
-                                }).catch(errorCallback)
-                            }
+                login : function (){
+                    // ASN REQ 3 : merely singIn with fb here
+                    var provider = new firebase.auth.FacebookAuthProvider();
+                    firebase.auth().signInWithPopup(provider).then(function(){}).catch(errorCallback)
+                    // 換成登入圖
+                },
+                logout : function (){
+                    // ASN REQ 3  : signOut here
+                    firebase.auth().signOut()
+                    console.log("successfully log out")
+                    // 換成未登入圖
+                }
+            }
+        });
+        </script>
 
-                    }                
-                }                        
-            });       
-
-
-            
-
-            // rootRef('/users/' + loginUser.uid).once('value').then(function(snapshot) {})
-        </script>    
-
-     
     </body>
 </html>
