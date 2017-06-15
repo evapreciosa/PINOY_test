@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Pinoy Share Platfrom</title>
-        <link rel=stylesheet media="screen" href="form.css">
+        <!--<link rel=stylesheet media="screen" href="form.css">-->
 
         <style>
         @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
@@ -149,8 +149,9 @@
             el:'#postForm',
             methods:{
                 submit : function() {
+                    
                     var dataArr = $("#postForm").serializeArray();
-
+                    console.log(dataArr)
                     // Get a key for a new Post.
                     var newPostKey = firebase.database().ref().child('posts').push().key;
 
@@ -180,7 +181,7 @@
                     // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
 
                     return firebase.database().ref().update(updates);
-                }.catch(errorCallback),
+                },
                 login : function (){
                     // ASN REQ 3 : merely singIn with fb here
                     var provider = new firebase.auth.FacebookAuthProvider();
