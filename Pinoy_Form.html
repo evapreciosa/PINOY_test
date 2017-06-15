@@ -3,27 +3,23 @@
     <head>
         <meta charset="utf-8">
         <title>Pinoy Share Platfrom</title>
-        <!--<link rel=stylesheet media="screen" href="form.css">-->
-
-        <style>
-        @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
-        {font-family: "Noto Sans TC", "Microsoft JhengHe";}
-        </style>
-
+        <link rel=stylesheet media="screen" href="form.css">
     </head>
     <body>
         <div id="topic"><img id="top" src="img/top.png" alt="pinoy"></div>
         <h2>Share Your Work Experience!</h2>
         <form id="postForm" method="text">
-            <input name="company" type="text" required  placeholder="Company Name"></br>
-            <input name="jobPos" type="text" required  placeholder="Job Position">
+            <span class="wordcss">Company Name :</span><input name="company" type="text" required  placeholder="Company Name"></br>
+            <span class="wordcss">Job Position :</span><input name="jobPos" type="text" required  placeholder="Job Position">
 
+            <span class="wordcss">Job Category :</span>
             <select name="jobType" required>
                 <option value="">Job Category</option>
                 <option value="factoryworker">Factory Worker</option>
                 <option value="fisherman">Fisherman</option>
                 <option value="household">Household worker</option>
             </select></br>
+
             <span class="wordcss">During :</span>
             <input name="startTime" type="date" class="during" required placeholder="Start working day">  <span class="wordcss">&nbsp; ~ &nbsp;</span> <input name="endTime" type="date" class="during" required placeholder="End day">
             <span class="wordcss">Wage :</span><input name="wage" class="wage" type="number" required placeholder=" 0"><span class="wordcss">&nbsp; NTD&nbsp; </span>
@@ -33,29 +29,34 @@
                 <option value="week">/Week</option>
                 <option value="month">/Month</option>
             </select>
+
+            <span class="wordcss"> &nbsp;Rate :</span>
             <select name="wageRate" class="wage"required>
                 <option value="">rate:_/5</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1">1/5</option>
+                <option value="2">2/5</option>
+                <option value="3">3/5</option>
+                <option value="4">4/5</option>
+                <option value="5">5/5</option>
             </select></br>
 
-            <input name="rent" type="number" required placeholder="Rent : 0 NTD">
+            <span class="wordcss">Rent :</span><input name="rent" type="number" required placeholder="Rent : 0 NTD">
+            
             <select name="rentPer" required>
                 <option value="">Please Select</option>
                 <option value="day">/Day</option>
                 <option value="week">/Week</option>
                 <option value="month">/Month</option>
             </select>
+
+            <span class="wordcss"> &nbsp;Rate :</span>
             <select name="rentRate" required>
                 <option value="" >rate:_/5</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1">1/5</option>
+                <option value="2">2/5</option>
+                <option value="3">3/5</option>
+                <option value="4">4/5</option>
+                <option value="5">5/5</option>
             </select></br>
 
             <input name="dayOff" type="number" required placeholder="Day-off : 0 day">
@@ -64,13 +65,15 @@
                 <option value="week">/week</option>
                 <option value="month">/month</option>
             </select>
+
+            <span class="wordcss"> &nbsp;Rate :</span>
             <select name="dayRate" required>
                 <option value="" >rate:_/5</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1">1/5</option>
+                <option value="2">2/5</option>
+                <option value="3">3/5</option>
+                <option value="4">4/5</option>
+                <option value="5">5/5</option>
             </select>
 
             </br>
@@ -123,7 +126,7 @@
                         dayOffPer: dataArr[12].value,
                         dayOffRate: dataArr[13].value,
                         comment: dataArr[14].value,
-                        submitTime: new Date().getFullYear() + "." + (new Date().getMonth() +1) + "." + new Date().getDate() + new Date().getHours() + new Date().getMinutes()
+                        submitTime: new Date().getFullYear() + "." + (new Date().getMonth() +1) + "." + new Date().getDate() + " " + new Date().getHours() + ":" + new Date().getMinutes()
                     };
 
                     // Write the new post's data simultaneously in the posts list and the user's post list.
