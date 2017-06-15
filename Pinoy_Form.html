@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Pinoy Share Platfrom</title>
-        <link rel=stylesheet media="screen" href="form.css">
+        <!--<link rel=stylesheet media="screen" href="form.css">-->
 
         <style>
         @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
@@ -123,7 +123,7 @@
                         dayOffPer: dataArr[12].value,
                         dayOffRate: dataArr[13].value,
                         comment: dataArr[14].value,
-                        submitTime: new Date().getFullYear + "." + new Date().getMonth + "." + new Date().getDay
+                        submitTime: new Date().getFullYear() + "." + (new Date().getMonth() +1) + "." + new Date().getDate() + new Date().getTime()
                     };
 
                     // Write the new post's data simultaneously in the posts list and the user's post list.
