@@ -123,7 +123,7 @@
                         dayOffPer: dataArr[12].value,
                         dayOffRate: dataArr[13].value,
                         comment: dataArr[14].value,
-                        submitTime: new Date().getFullYear() + "." + (new Date().getMonth() +1) + "." + new Date().getDate() + new Date().getTime()
+                        submitTime: new Date().getFullYear() + "." + (new Date().getMonth() +1) + "." + new Date().getDate() + new Date().getHours() + new Date().getMinutes()
                     };
 
                     // Write the new post's data simultaneously in the posts list and the user's post list.
